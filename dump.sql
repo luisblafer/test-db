@@ -3,13 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 04, 2019 at 06:43 PM
+-- Generation Time: Jul 04, 2019 at 06:47 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
@@ -24,23 +22,17 @@ USE `movies_db`;
 -- Table structure for table `actors`
 --
 
-CREATE TABLE IF NOT EXISTS `actors` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `actors`;
+CREATE TABLE `actors` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `first_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `last_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `rating` decimal(3,1) DEFAULT NULL,
-  `favorite_movie_id` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `actors_favorite_movie_id_foreign` (`favorite_movie_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `favorite_movie_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `actors`
---
-
-TRUNCATE TABLE `actors`;
 --
 -- Dumping data for table `actors`
 --
@@ -102,22 +94,15 @@ INSERT INTO `actors` (`id`, `created_at`, `updated_at`, `first_name`, `last_name
 -- Table structure for table `actor_episode`
 --
 
-CREATE TABLE IF NOT EXISTS `actor_episode` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `actor_episode`;
+CREATE TABLE `actor_episode` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `actor_id` int(10) UNSIGNED NOT NULL,
-  `episode_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `actor_episode_actor_id_foreign` (`actor_id`),
-  KEY `actor_episode_episode_id_foreign` (`episode_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `episode_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `actor_episode`
---
-
-TRUNCATE TABLE `actor_episode`;
 --
 -- Dumping data for table `actor_episode`
 --
@@ -278,22 +263,15 @@ INSERT INTO `actor_episode` (`id`, `created_at`, `updated_at`, `actor_id`, `epis
 -- Table structure for table `actor_movie`
 --
 
-CREATE TABLE IF NOT EXISTS `actor_movie` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `actor_movie`;
+CREATE TABLE `actor_movie` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `actor_id` int(10) UNSIGNED NOT NULL,
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `actor_movie_actor_id_foreign` (`actor_id`),
-  KEY `actor_movie_movie_id_foreign` (`movie_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `movie_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `actor_movie`
---
-
-TRUNCATE TABLE `actor_movie`;
 --
 -- Dumping data for table `actor_movie`
 --
@@ -349,24 +327,18 @@ INSERT INTO `actor_movie` (`id`, `created_at`, `updated_at`, `actor_id`, `movie_
 -- Table structure for table `episodes`
 --
 
-CREATE TABLE IF NOT EXISTS `episodes` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `episodes`;
+CREATE TABLE `episodes` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `title` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `number` int(10) UNSIGNED DEFAULT NULL,
   `release_date` datetime NOT NULL,
   `rating` decimal(3,1) NOT NULL,
-  `season_id` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `episodes_season_id_foreign` (`season_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `season_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `episodes`
---
-
-TRUNCATE TABLE `episodes`;
 --
 -- Dumping data for table `episodes`
 --
@@ -436,22 +408,16 @@ INSERT INTO `episodes` (`id`, `created_at`, `updated_at`, `title`, `number`, `re
 -- Table structure for table `genres`
 --
 
-CREATE TABLE IF NOT EXISTS `genres` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `genres`;
+CREATE TABLE `genres` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ranking` int(10) UNSIGNED NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `genres_ranking_unique` (`ranking`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `genres`
---
-
-TRUNCATE TABLE `genres`;
 --
 -- Dumping data for table `genres`
 --
@@ -476,18 +442,13 @@ INSERT INTO `genres` (`id`, `created_at`, `updated_at`, `name`, `ranking`, `acti
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `migrations`
---
-
-TRUNCATE TABLE `migrations`;
 --
 -- Dumping data for table `migrations`
 --
@@ -510,8 +471,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `movies`
 --
 
-CREATE TABLE IF NOT EXISTS `movies` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `movies`;
+CREATE TABLE `movies` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `title` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
@@ -519,16 +481,9 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `awards` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `release_date` datetime NOT NULL,
   `length` int(10) UNSIGNED DEFAULT NULL,
-  `genre_id` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `movies_genre_id_foreign` (`genre_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `genre_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `movies`
---
-
-TRUNCATE TABLE `movies`;
 --
 -- Dumping data for table `movies`
 --
@@ -562,43 +517,31 @@ INSERT INTO `movies` (`id`, `created_at`, `updated_at`, `title`, `rating`, `awar
 -- Table structure for table `password_resets`
 --
 
-CREATE TABLE IF NOT EXISTS `password_resets` (
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`),
-  KEY `password_resets_token_index` (`token`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `password_resets`
---
-
-TRUNCATE TABLE `password_resets`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `seasons`
 --
 
-CREATE TABLE IF NOT EXISTS `seasons` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `seasons`;
+CREATE TABLE `seasons` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `title` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `number` int(10) UNSIGNED DEFAULT NULL,
   `release_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
-  `serie_id` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `seasons_serie_id_foreign` (`serie_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `serie_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `seasons`
---
-
-TRUNCATE TABLE `seasons`;
 --
 -- Dumping data for table `seasons`
 --
@@ -657,23 +600,17 @@ INSERT INTO `seasons` (`id`, `created_at`, `updated_at`, `title`, `number`, `rel
 -- Table structure for table `series`
 --
 
-CREATE TABLE IF NOT EXISTS `series` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `series`;
+CREATE TABLE `series` (
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `title` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `release_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
-  `genre_id` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `series_genre_id_foreign` (`genre_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `genre_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Truncate table before insert `series`
---
-
-TRUNCATE TABLE `series`;
 --
 -- Dumping data for table `series`
 --
@@ -692,23 +629,163 @@ INSERT INTO `series` (`id`, `created_at`, `updated_at`, `title`, `release_date`,
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Truncate table before insert `users`
+-- Indexes for dumped tables
 --
 
-TRUNCATE TABLE `users`;
+--
+-- Indexes for table `actors`
+--
+ALTER TABLE `actors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `actors_favorite_movie_id_foreign` (`favorite_movie_id`);
+
+--
+-- Indexes for table `actor_episode`
+--
+ALTER TABLE `actor_episode`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `actor_episode_actor_id_foreign` (`actor_id`),
+  ADD KEY `actor_episode_episode_id_foreign` (`episode_id`);
+
+--
+-- Indexes for table `actor_movie`
+--
+ALTER TABLE `actor_movie`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `actor_movie_actor_id_foreign` (`actor_id`),
+  ADD KEY `actor_movie_movie_id_foreign` (`movie_id`);
+
+--
+-- Indexes for table `episodes`
+--
+ALTER TABLE `episodes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `episodes_season_id_foreign` (`season_id`);
+
+--
+-- Indexes for table `genres`
+--
+ALTER TABLE `genres`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `genres_ranking_unique` (`ranking`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `movies`
+--
+ALTER TABLE `movies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `movies_genre_id_foreign` (`genre_id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`),
+  ADD KEY `password_resets_token_index` (`token`);
+
+--
+-- Indexes for table `seasons`
+--
+ALTER TABLE `seasons`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `seasons_serie_id_foreign` (`serie_id`);
+
+--
+-- Indexes for table `series`
+--
+ALTER TABLE `series`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `series_genre_id_foreign` (`genre_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `actors`
+--
+ALTER TABLE `actors`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `actor_episode`
+--
+ALTER TABLE `actor_episode`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+
+--
+-- AUTO_INCREMENT for table `actor_movie`
+--
+ALTER TABLE `actor_movie`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `episodes`
+--
+ALTER TABLE `episodes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `genres`
+--
+ALTER TABLE `genres`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `movies`
+--
+ALTER TABLE `movies`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `seasons`
+--
+ALTER TABLE `seasons`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `series`
+--
+ALTER TABLE `series`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -756,4 +833,3 @@ ALTER TABLE `seasons`
 --
 ALTER TABLE `series`
   ADD CONSTRAINT `series_genre_id_foreign` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`);
-COMMIT;
