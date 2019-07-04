@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 04, 2019 at 06:29 PM
+-- Generation Time: Jul 04, 2019 at 06:36 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.2.14
 
@@ -13,6 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `movies_db`
 --
+CREATE DATABASE IF NOT EXISTS `movies_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `movies_db`;
 
 -- --------------------------------------------------------
 
@@ -820,3 +822,4 @@ ALTER TABLE `seasons`
 --
 ALTER TABLE `series`
   ADD CONSTRAINT `series_genre_id_foreign` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`);
+
