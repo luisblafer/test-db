@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 04, 2019 at 06:47 PM
+-- Generation Time: Jul 04, 2019 at 07:04 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.2.14
 
@@ -13,8 +13,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `movies_db`
 --
-CREATE DATABASE IF NOT EXISTS `movies_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `movies_db`;
 
 -- --------------------------------------------------------
 
@@ -22,7 +20,6 @@ USE `movies_db`;
 -- Table structure for table `actors`
 --
 
-DROP TABLE IF EXISTS `actors`;
 CREATE TABLE `actors` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -94,7 +91,6 @@ INSERT INTO `actors` (`id`, `created_at`, `updated_at`, `first_name`, `last_name
 -- Table structure for table `actor_episode`
 --
 
-DROP TABLE IF EXISTS `actor_episode`;
 CREATE TABLE `actor_episode` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -263,7 +259,6 @@ INSERT INTO `actor_episode` (`id`, `created_at`, `updated_at`, `actor_id`, `epis
 -- Table structure for table `actor_movie`
 --
 
-DROP TABLE IF EXISTS `actor_movie`;
 CREATE TABLE `actor_movie` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -327,7 +322,6 @@ INSERT INTO `actor_movie` (`id`, `created_at`, `updated_at`, `actor_id`, `movie_
 -- Table structure for table `episodes`
 --
 
-DROP TABLE IF EXISTS `episodes`;
 CREATE TABLE `episodes` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -408,7 +402,6 @@ INSERT INTO `episodes` (`id`, `created_at`, `updated_at`, `title`, `number`, `re
 -- Table structure for table `genres`
 --
 
-DROP TABLE IF EXISTS `genres`;
 CREATE TABLE `genres` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -442,7 +435,6 @@ INSERT INTO `genres` (`id`, `created_at`, `updated_at`, `name`, `ranking`, `acti
 -- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -471,7 +463,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `movies`
 --
 
-DROP TABLE IF EXISTS `movies`;
 CREATE TABLE `movies` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -517,7 +508,6 @@ INSERT INTO `movies` (`id`, `created_at`, `updated_at`, `title`, `rating`, `awar
 -- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -530,7 +520,6 @@ CREATE TABLE `password_resets` (
 -- Table structure for table `seasons`
 --
 
-DROP TABLE IF EXISTS `seasons`;
 CREATE TABLE `seasons` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -600,7 +589,6 @@ INSERT INTO `seasons` (`id`, `created_at`, `updated_at`, `title`, `number`, `rel
 -- Table structure for table `series`
 --
 
-DROP TABLE IF EXISTS `series`;
 CREATE TABLE `series` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -629,7 +617,6 @@ INSERT INTO `series` (`id`, `created_at`, `updated_at`, `title`, `release_date`,
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
