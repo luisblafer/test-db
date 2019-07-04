@@ -3,11 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 04, 2019 at 06:39 PM
+-- Generation Time: Jul 04, 2019 at 06:43 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
@@ -34,6 +36,11 @@ CREATE TABLE IF NOT EXISTS `actors` (
   KEY `actors_favorite_movie_id_foreign` (`favorite_movie_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `actors`
+--
+
+TRUNCATE TABLE `actors`;
 --
 -- Dumping data for table `actors`
 --
@@ -106,6 +113,11 @@ CREATE TABLE IF NOT EXISTS `actor_episode` (
   KEY `actor_episode_episode_id_foreign` (`episode_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `actor_episode`
+--
+
+TRUNCATE TABLE `actor_episode`;
 --
 -- Dumping data for table `actor_episode`
 --
@@ -278,6 +290,11 @@ CREATE TABLE IF NOT EXISTS `actor_movie` (
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Truncate table before insert `actor_movie`
+--
+
+TRUNCATE TABLE `actor_movie`;
+--
 -- Dumping data for table `actor_movie`
 --
 
@@ -345,6 +362,11 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   KEY `episodes_season_id_foreign` (`season_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `episodes`
+--
+
+TRUNCATE TABLE `episodes`;
 --
 -- Dumping data for table `episodes`
 --
@@ -426,6 +448,11 @@ CREATE TABLE IF NOT EXISTS `genres` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Truncate table before insert `genres`
+--
+
+TRUNCATE TABLE `genres`;
+--
 -- Dumping data for table `genres`
 --
 
@@ -456,6 +483,11 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `migrations`
+--
+
+TRUNCATE TABLE `migrations`;
 --
 -- Dumping data for table `migrations`
 --
@@ -492,6 +524,11 @@ CREATE TABLE IF NOT EXISTS `movies` (
   KEY `movies_genre_id_foreign` (`genre_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `movies`
+--
+
+TRUNCATE TABLE `movies`;
 --
 -- Dumping data for table `movies`
 --
@@ -533,6 +570,11 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   KEY `password_resets_token_index` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `password_resets`
+--
+
+TRUNCATE TABLE `password_resets`;
 -- --------------------------------------------------------
 
 --
@@ -552,6 +594,11 @@ CREATE TABLE IF NOT EXISTS `seasons` (
   KEY `seasons_serie_id_foreign` (`serie_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `seasons`
+--
+
+TRUNCATE TABLE `seasons`;
 --
 -- Dumping data for table `seasons`
 --
@@ -623,6 +670,11 @@ CREATE TABLE IF NOT EXISTS `series` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Truncate table before insert `series`
+--
+
+TRUNCATE TABLE `series`;
+--
 -- Dumping data for table `series`
 --
 
@@ -652,6 +704,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `users`
+--
+
+TRUNCATE TABLE `users`;
 --
 -- Constraints for dumped tables
 --
@@ -699,3 +756,4 @@ ALTER TABLE `seasons`
 --
 ALTER TABLE `series`
   ADD CONSTRAINT `series_genre_id_foreign` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`);
+COMMIT;
